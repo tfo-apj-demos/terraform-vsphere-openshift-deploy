@@ -6,7 +6,7 @@ terraform {
     }
     vault = {
       source  = "hashicorp/vault"
-      version = "~> 4"
+      version = "~> 3"
     }
     vsphere = {
       source  = "hashicorp/vsphere"
