@@ -56,6 +56,7 @@ resource "vsphere_virtual_machine" "vm" {
   memory           = 32768
   guest_id         = "otherLinux64Guest"
   folder = "Demo Workloads"
+  scsi_type = "pvscsi"
 
   network_interface {
     network_id = data.vsphere_network.network.id
