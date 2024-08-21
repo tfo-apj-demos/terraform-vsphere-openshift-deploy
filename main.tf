@@ -56,7 +56,7 @@ resource "vsphere_virtual_machine" "vm" {
   memory           = 32768
   guest_id         = "otherLinux64Guest"
   folder = "Demo Workloads"
-  scsi_type = "lsilogic-sas"
+  scsi_type = "pvscisi"
   enable_disk_uuid = true
 
   network_interface {
@@ -64,7 +64,14 @@ resource "vsphere_virtual_machine" "vm" {
   }
   disk {
     label = "disk0"
-    size  = 150
+    size  = 100
+    thin_provisioned = true
+  }
+
+  disk {
+    label = "disk1"
+    size  = 200
+    thin_provisioned = true
   }
 
   cdrom {
