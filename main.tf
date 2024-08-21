@@ -26,32 +26,14 @@ resource "nsxt_policy_ip_address_allocation" "load_balancer" {
 }
 
 # --- Generate a Vault token for the agent to bootstrap and retrieve certificates
-resource "vault_token" "this" {
-  for_each  = toset(var.hostnames)
-  no_parent = true
-  period    = "2h"
-  policies = [
-    "generate_certificate"
-  ]
-}
-
-#>>  NO LB REQUIRED
-/* # --- Deploy Load Balancer
-module "load_balancer" {
-  source  = "app.terraform.io/tfo-apj-demos/load-balancer/nsxt"
-  version = "0.0.3-beta"
-
-  hosts = [for host in module.openshift_server : {
-    "hostname" = host.virtual_machine_name
-    "address"  = host.ip_address
-  }]
-  ports = [
-    "4646"
-  ]
-  load_balancer_ip_address = nsxt_policy_ip_address_allocation.load_balancer.allocation_ip
-  name                     = "openshift"
-  lb_app_profile_type      = "TCP"
-} */
+# resource "vault_token" "this" {
+#   for_each  = toset(var.hostnames)
+#   no_parent = true
+#   period    = "2h"
+#   policies = [
+#     "generate_certificate"
+#   ]
+# }
 
 # --- Deploy a cluster of Openshift servers
 module "openshift_server" {
