@@ -55,7 +55,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cpus         = 12
   memory           = 32768
   guest_id         = "otherLinux64Guest"
-  folder = "Demo Workload"
+  folder = "Demo Workloads"
 
   network_interface {
     network_id = data.vsphere_network.network.id
