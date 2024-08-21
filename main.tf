@@ -81,7 +81,28 @@ resource "vsphere_virtual_machine" "vm" {
   }
 }
 
+# --- Retrieve IPs for use by the load balancer and Nomad virtual machines
+data "nsxt_policy_ip_pool" "this" {
+  display_name = "10 - gcve-foundations"
+}
 
+resource "nsxt_policy_ip_address_allocation" "api" {
+  display_name = "openshift-api-ip"
+  pool_path    = data.nsxt_policy_ip_pool.this.path
+}
+
+resource "nsxt_policy_ip_address_allocation" "ingress" {
+  display_name = "openshift-ingress-ip"
+  pool_path    = data.nsxt_policy_ip_pool.this.path
+}
+
+output "api_address" { 
+  value = nsxt_policy_ip_address_allocation.api.allocation_ip
+}
+
+output "ingress_address" { 
+  value = nsxt_policy_ip_address_allocation.ingress.allocation_ip
+}
 
 # module "ssh_role" {
 #   source  = "app.terraform.io/tfo-apj-demos/ssh-role/vault"
