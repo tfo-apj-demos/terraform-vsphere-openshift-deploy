@@ -20,7 +20,7 @@ variable "boundary_address" {
 variable "cluster_size" {
   description = "The number of nodes in the cluster."
   type        = number
-  default     = 3
+  default     = 6
 }
 
 variable "openshift_license" {
