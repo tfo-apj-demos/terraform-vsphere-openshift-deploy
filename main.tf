@@ -119,18 +119,18 @@ module "boundary_target" {
 }
 
 
-# --- Add LB to DNS
-module "load_balancer_dns" {
-  source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
-  version = "~> 1.0"
+# --- Add LB to DNS <<<< TO REMOVE THIS
+# module "load_balancer_dns" {
+#   source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
+#   version = "~> 1.0"
 
-  a_records = [
-    {
-      name      = var.load_balancer_dns_name
-      addresses = [nsxt_policy_ip_address_allocation.load_balancer.allocation_ip]
-    }
-  ]
-}
+#   a_records = [
+#     {
+#       name      = var.load_balancer_dns_name
+#       addresses = [nsxt_policy_ip_address_allocation.load_balancer.allocation_ip]
+#     }
+#   ]
+# }
 
 # --- Add servers to DNS
 module "openshift_server_dns" {
