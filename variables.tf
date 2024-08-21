@@ -3,17 +3,17 @@ variable "boundary_address" {
   type = string
 }
 
-variable "service_account_authmethod_id" {
-  type = string
-}
+# variable "service_account_authmethod_id" {
+#   type = string
+# }
 
-variable "service_account_name" {
-  type = string
-}
+# variable "service_account_name" {
+#   type = string
+# }
 
-variable "service_account_password" {
-  type = string
-}
+# variable "service_account_password" {
+#   type = string
+# }
 
 #--- Openshift application variables
 variable "cluster_size" {
@@ -31,37 +31,6 @@ variable "hostnames" {
   default = ["openshift-01", "openshift-02", "openshift-03"]
 }
 
-# variable "nomad_vsphere_user" {
-#   description = "Used for auto-join node discovery."
-#   type = string
-# }
-
-# variable "nomad_vsphere_password" {
-#   description = "Used for auto-join node discovery."
-#   type = string
-# }
-
-# variable "nomad_vsphere_host" {
-#   description = "Used for auto-join node discovery."
-#   type = string
-# }
-
-#--- DNS registration variables
-# variable "dns_username" {
-#   type = string
-# }
-
-# variable "dns_password" {
-#   type = string
-# }
-
-# variable "dns_realm" {
-#   type = string
-# }
-
-# variable "dns_server" {
-#   type = string
-# }
 
 variable "load_balancer_dns_name" {
   type = string
