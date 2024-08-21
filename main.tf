@@ -70,7 +70,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk1"
-    size  = 200
+    size  = 500
     thin_provisioned = true
     unit_number      = 1
   }

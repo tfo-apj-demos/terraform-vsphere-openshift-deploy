@@ -30,7 +30,7 @@ variable "openshift_license" {
 
 variable "hostnames" {
   type    = list(string)
-  default = ["openshift-01", "openshift-02", "openshift-03"]
+  default = ["openshift-01", "openshift-02", "openshift-03", "openshift-04", "openshift-05", "openshift-06"]
 }
 
 
