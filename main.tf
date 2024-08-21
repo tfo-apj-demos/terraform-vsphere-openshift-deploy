@@ -57,6 +57,7 @@ resource "vsphere_virtual_machine" "vm" {
   guest_id         = "otherLinux64Guest"
   folder = "Demo Workloads"
   scsi_type = "pvscsi"
+  enable_disk_uuid = true
 
   network_interface {
     network_id = data.vsphere_network.network.id
@@ -66,10 +67,10 @@ resource "vsphere_virtual_machine" "vm" {
     size  = 150
   }
 
-  #  cdrom {
-  #   datastore_id = data.vsphere_datastore.datastore.id
-  #   path         = "ISO/b649ce88-11c8-4504-9c72-3f1729fbaa02-discovery.iso"
-  # }
+  cdrom {
+    datastore_id = data.vsphere_datastore.datastore.id
+    path         = "ISO/b649ce88-11c8-4504-9c72-3f1729fbaa02-discovery.iso"
+  }
 }
 
 
