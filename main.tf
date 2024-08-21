@@ -56,7 +56,7 @@ resource "vsphere_virtual_machine" "vm" {
   memory           = 32768
   guest_id         = "otherLinux64Guest"
   folder = "Demo Workloads"
-  scsi_type = "pvscisi"
+  scsi_type = "pvscsi"
   enable_disk_uuid = true
 
   network_interface {
