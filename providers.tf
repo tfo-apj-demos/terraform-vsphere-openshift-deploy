@@ -22,3 +22,7 @@ terraform {
     }
   }
 }
+
+provider "boundary" {
+  addr = var.boundary_address
+}
