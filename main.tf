@@ -35,7 +35,8 @@ resource "vault_token" "this" {
   ]
 }
 
-# --- Deploy Load Balancer
+#>>  NO LB REQUIRED
+/* # --- Deploy Load Balancer
 module "load_balancer" {
   source  = "app.terraform.io/tfo-apj-demos/load-balancer/nsxt"
   version = "0.0.3-beta"
@@ -50,7 +51,7 @@ module "load_balancer" {
   load_balancer_ip_address = nsxt_policy_ip_address_allocation.load_balancer.allocation_ip
   name                     = "openshift"
   lb_app_profile_type      = "TCP"
-}
+} */
 
 # --- Deploy a cluster of Openshift servers
 module "openshift_server" {

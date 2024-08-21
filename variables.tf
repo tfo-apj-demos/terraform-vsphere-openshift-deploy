@@ -24,6 +24,7 @@ variable "cluster_size" {
 
 variable "openshift_license" {
   type = string
+  default = null
 }
 
 variable "hostnames" {
@@ -32,9 +33,9 @@ variable "hostnames" {
 }
 
 
-variable "load_balancer_dns_name" {
+/* variable "load_balancer_dns_name" {
   type = string
-}
+} */
 
 variable "TFC_WORKSPACE_ID" {}
 
