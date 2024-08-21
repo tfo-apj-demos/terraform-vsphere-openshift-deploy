@@ -63,35 +63,6 @@ module "ssh_role" {
   ssh_role_name = "${var.TFC_WORKSPACE_ID}-openshift_ssh_ca_signing"
 }
 
-# --- Create Boundary targets for the Vault nodes
-module "boundary_target" {
-  source  = "app.terraform.io/tfo-apj-demos/target/boundary"
-  version = "1.0.13-alpha"
-
-  hosts = [for host in module.openshift_server : {
-    "hostname" = host.virtual_machine_name
-    "address"  = host.ip_address
-  }]
-
-  services = [
-    {
-      name             = "ssh",
-      type             = "ssh",
-      port             = "22",
-      credential_paths = [module.ssh_role.credential_path]
-    }
-  ]
-
-  project_name    = "gcve_admins"
-  host_catalog_id = "hcst_RACKlVym4Z"
-  hostname_prefix = "ssh"
-
-  credential_store_token = module.ssh_role.token
-  vault_address          = var.vault_address
-  #vault_ca_cert          = file("${path.root}/ca_cert_dir/ca_chain.pem")
-}
-
-
 # --- Add LB to DNS <<<< TO REMOVE THIS
 # module "load_balancer_dns" {
 #   source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
