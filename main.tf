@@ -66,10 +66,10 @@ resource "vsphere_virtual_machine" "vm" {
     thin_provisioned = true
   }
 
-   cdrom {
-    datastore_id = data.vsphere_datastore.datastore.id
-    path         = "ISO/b649ce88-11c8-4504-9c72-3f1729fbaa02-discovery.iso"
-  }
+  #  cdrom {
+  #   datastore_id = data.vsphere_datastore.datastore.id
+  #   path         = "ISO/b649ce88-11c8-4504-9c72-3f1729fbaa02-discovery.iso"
+  # }
 }
 
 
