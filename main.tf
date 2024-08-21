@@ -72,6 +72,7 @@ resource "vsphere_virtual_machine" "vm" {
     label = "disk1"
     size  = 200
     thin_provisioned = true
+    unit_number      = 1
   }
 
   cdrom {
