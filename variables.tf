@@ -1,6 +1,7 @@
 #--- Boundary connection variables
 variable "boundary_address" {
   type = string
+  default = "https://8b596635-91df-45a3-8455-1ecbf5e8c43e.boundary.hashicorp.cloud"
 }
 
 # variable "service_account_authmethod_id" {

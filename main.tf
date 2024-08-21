@@ -25,15 +25,6 @@ resource "nsxt_policy_ip_address_allocation" "load_balancer" {
   pool_path    = data.nsxt_policy_ip_pool.this.path
 }
 
-# --- Generate a Vault token for the agent to bootstrap and retrieve certificates
-# resource "vault_token" "this" {
-#   for_each  = toset(var.hostnames)
-#   no_parent = true
-#   period    = "2h"
-#   policies = [
-#     "generate_certificate"
-#   ]
-# }
 
 # --- Deploy a cluster of Openshift servers
 module "openshift_server" {
