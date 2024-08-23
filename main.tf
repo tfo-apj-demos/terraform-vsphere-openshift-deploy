@@ -133,10 +133,10 @@ module "openshift_server_dns" {
   a_records = [
     {
       "name"      = "api.openshift-01.hashicorp.local"
-      "addresses" = nsxt_policy_ip_address_allocation.api.allocation_ip
+      "addresses" = [nsxt_policy_ip_address_allocation.api.allocation_ip]
       }, {
       "name"      = "*.apps.openshift-01.hashicorp.local"
-      "addresses" = nsxt_policy_ip_address_allocation.ingress.allocation_ip
+      "addresses" = [nsxt_policy_ip_address_allocation.ingress.allocation_ip]
     }
   ]
 }
