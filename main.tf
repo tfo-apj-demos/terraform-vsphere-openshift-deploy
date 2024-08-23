@@ -48,29 +48,29 @@ data "vsphere_network" "network" {
 
 # deploy shell vm and attach iso using the vsphere vm resource not the module
 resource "vsphere_virtual_machine" "vm" {
-  for_each = toset(var.hostnames)
+  for_each         = toset(var.hostnames)
   name             = each.value
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
   num_cpus         = 12
   memory           = 32768
   guest_id         = "otherLinux64Guest"
-  folder = "Demo Workloads"
-  scsi_type = "pvscsi"
+  folder           = "Demo Workloads"
+  scsi_type        = "pvscsi"
   enable_disk_uuid = true
 
   network_interface {
     network_id = data.vsphere_network.network.id
   }
   disk {
-    label = "disk0"
-    size  = 150
+    label            = "disk0"
+    size             = 150
     thin_provisioned = true
   }
 
   disk {
-    label = "disk1"
-    size  = 500
+    label            = "disk1"
+    size             = 500
     thin_provisioned = true
     unit_number      = 1
   }
@@ -96,11 +96,11 @@ resource "nsxt_policy_ip_address_allocation" "ingress" {
   pool_path    = data.nsxt_policy_ip_pool.this.path
 }
 
-output "api_address" { 
+output "api_address" {
   value = nsxt_policy_ip_address_allocation.api.allocation_ip
 }
 
-output "ingress_address" { 
+output "ingress_address" {
   value = nsxt_policy_ip_address_allocation.ingress.allocation_ip
 }
 
@@ -125,13 +125,18 @@ output "ingress_address" {
 #   ]
 # }
 
-# # --- Add servers to DNS
-# module "openshift_server_dns" {
-#   source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
-#   version = "~> 1.0"
+# --- Add servers to DNS
+module "openshift_server_dns" {
+  source  = "app.terraform.io/tfo-apj-demos/domain-name-system-management/dns"
+  version = "~> 1.0"
 
-#   a_records = [for host in module.openshift_server : {
-#     "name"      = host.virtual_machine_name
-#     "addresses" = [host.ip_address]
-#   }]
-# }
+  a_records = [
+    {
+      "name"      = "api.openshift-01.hashicorp.local"
+      "addresses" = nsxt_policy_ip_address_allocation.api.allocation_ip
+      }, {
+      "name"      = "*.apps.openshift-01.hashicorp.local"
+      "addresses" = nsxt_policy_ip_address_allocation.ingress.allocation_ip
+    }
+  ]
+}

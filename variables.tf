@@ -1,6 +1,6 @@
 #--- Boundary connection variables
 variable "boundary_address" {
-  type = string
+  type    = string
   default = "https://8b596635-91df-45a3-8455-1ecbf5e8c43e.boundary.hashicorp.cloud"
 }
 
@@ -24,7 +24,7 @@ variable "cluster_size" {
 }
 
 variable "openshift_license" {
-  type = string
+  type    = string
   default = null
 }
 
