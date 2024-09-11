@@ -77,7 +77,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   cdrom {
     datastore_id = data.vsphere_datastore.datastore.id
-    path         = "0f613b62-36b8-a403-4309-0c42a18065de/b649ce88-11c8-4504-9c72-3f1729fbaa02-discovery.iso"
+    path         = "0f613b62-36b8-a403-4309-0c42a18065de/f81dccd6-3ddf-4cb8-b037-ee92fa67b66a-discovery.iso"
   }
 }
 
