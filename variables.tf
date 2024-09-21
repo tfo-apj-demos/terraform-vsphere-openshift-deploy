@@ -20,12 +20,12 @@ variable "boundary_address" {
 variable "cluster_size" {
   description = "The number of nodes in the cluster."
   type        = number
-  default     = 7
+  default     = 8
 }
 
 variable "hostnames" {
   type    = list(string)
-  default = ["openshift-01", "openshift-02", "openshift-03", "openshift-04", "openshift-05", "openshift-06", "openshift-07"]
+  default = ["openshift-01", "openshift-02", "openshift-03", "openshift-04", "openshift-05", "openshift-06", "openshift-07", "openshift-08"]
 }
 
 
