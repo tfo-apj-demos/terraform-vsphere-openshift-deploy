@@ -55,7 +55,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cpus         = 12
   memory           = 32768
   guest_id         = "otherLinux64Guest"
-  folder           = "Demo Workloads"
+  folder           = "Demo Management"
   scsi_type        = "pvscsi"
   enable_disk_uuid = true
 
