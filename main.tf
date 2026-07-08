@@ -52,8 +52,10 @@ resource "vsphere_virtual_machine" "vm" {
   name             = each.value
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
-  num_cpus         = 12
-  memory           = 32768
+  # Sized to match live nodes (16 vCPU / 48 GiB). Do NOT lower to 12/32 —
+  # the cluster was resized up out-of-band; an apply at 12/32 shrinks all 8 nodes.
+  num_cpus         = 16
+  memory           = 49152
   guest_id         = "otherLinux64Guest"
   folder           = "Demo Management"
   scsi_type        = "pvscsi"
