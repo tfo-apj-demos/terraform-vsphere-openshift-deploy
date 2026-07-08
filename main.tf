@@ -60,6 +60,10 @@ resource "vsphere_virtual_machine" "vm" {
   folder           = "Demo Management"
   scsi_type        = "pvscsi"
   enable_disk_uuid = true
+  # Expose hardware virtualization to the guest (nested HV) so the OpenShift
+  # nodes can run OpenShift Virtualization (KVM). Only takes effect on a
+  # powered-off VM — roll out one node at a time via targeted apply.
+  nested_hv_enabled = true
 
   network_interface {
     network_id = data.vsphere_network.network.id
