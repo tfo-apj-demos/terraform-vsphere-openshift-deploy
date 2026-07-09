@@ -9,8 +9,12 @@ terraform {
       version = "~> 3"
     }
     vsphere = {
-      source  = "hashicorp/vsphere"
-      version = "~> 2"
+      # vmware/vsphere 2.12.0 is the identical republished twin of the frozen
+      # hashicorp/vsphere 2.12.0 this substrate currently runs — pinned so the
+      # namespace flip is a pure no-op (no provider schema/version change to the
+      # 8 OpenShift node VMs). A deliberate version bump can follow separately.
+      source  = "vmware/vsphere"
+      version = "~> 2.12.0"
     }
     nsxt = {
       source  = "vmware/nsxt"
